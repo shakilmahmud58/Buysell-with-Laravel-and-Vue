@@ -41,12 +41,12 @@ Route::get('/messages','MessageController@getmessage')->middleware('auth');
 
 
 //for foodies
-Route::get('/foodies','MyController@showfoodies')->name('foodies');
-Route::get('/admin','MyController@admin')->name('adminhome');
-Route::post('/admin','MyController@adminpost');
-Route::get('/getit','MyController@getit');
-Route::get('/getselected','MyController@getselected');
-Route::post('/update','MyController@updateit');
+// Route::get('/foodies','MyController@showfoodies')->name('foodies');
+// Route::get('/admin','MyController@admin')->name('adminhome');
+// Route::post('/admin','MyController@adminpost');
+// Route::get('/getit','MyController@getit');
+// Route::get('/getselected','MyController@getselected');
+// Route::post('/update','MyController@updateit');
 
 
 Route::post('/buticspost','ButicsController@adminpost');
