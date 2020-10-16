@@ -26,14 +26,14 @@ import ExampleComponent from './components/ExampleComponent.vue';
 import Footer from './components/Footer.vue';
 import Textbox from './components/textbox.vue';
 import Form from './components/foodiesform.vue';
-import Butics from './components/buticspart.vue';
+import serarchbar from './components/searchbar.vue';
 
 
 Vue.component('example-component',ExampleComponent);
 Vue.component('example-footer',Footer);
 Vue.component('textbox',Textbox);
 Vue.component('form-example',Form);
-Vue.component('form-butics',Butics);
+Vue.component('searchbar',serarchbar);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -8,11 +8,12 @@
               <h1 style="color:orange; font-weight:bold;">BUYSELL</h1>
               <p class="font-weight-bold text-success pb-1" style="padding-left:100px;">-BUY & SELL EVERYTHING</p>
           </span>
-          <form class="form-inline" action="">
+          <!-- <form class="form-inline" action="">
                   <input class="form-control mr-sm-2 " size='40' type="text" placeholder="Search...">
                   <button type="submit" placeholder="Search.." class="btn btn-warning">Search</button>
                  </div>
-          </form>
+          </form> -->
+		  <div id ='app'><searchbar></searchbar></div>
           <li class="nav-item ">
               <a class="nav-link pt-5 pl-5 pr-3" href="#">SIGN UP<span class="badge">0</span></a>
           </li>
