@@ -20,7 +20,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body data-spy="scroll" data-target="#butics" data-offset='10'>
+<body>
     @yield('nav')
     @yield('carousel')
     @yield('content')

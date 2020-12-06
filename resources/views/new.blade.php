@@ -13,7 +13,7 @@
                   <button type="submit" placeholder="Search.." class="btn btn-warning">Search</button>
                  </div>
           </form> -->
-		  <div id ='app'><searchbar></searchbar></div>
+		  <div id="app1" style="padding-top:45px;padding-left:10px"><searchbar></searchbar></div>
           <li class="nav-item ">
               <a class="nav-link pt-5 pl-5 pr-3" href="#">SIGN UP<span class="badge">0</span></a>
           </li>
@@ -88,21 +88,19 @@
 	         <div class="col-sm-2 " style="height:500px;background-color:orange;">
 		         <p style="padding-top:10px">FOR ADDS,THIS PLACE IS FOR ADDS</p> 
 	         </div>
-	         <div id="app" class="col-sm-8 border border-top-0">
+	         <div id= "app" class="col-sm-8 border border-top-0">
 			    @foreach ($data as $data)
                     <div class="card bg-light">
-			             <div class="card-body" style="height:280px;background-color:">
-			                 <p style="float:left;clear:both;"> <img src="{{ $data->image }}" width="150px" height="210px"></p>
+			             <div class="card-body" style="height:250px;background-color:">
+			                 <p style="float:left;clear:both;"> <a href="/product {{$data->id}}"><img src="{{ $data->image }}" width="150px" height="210px"></a></p>
 				             <div style="text-align:left;margin-left:300px;border-left:solid black 1px;padding-left:15px;">
 							    <p><span style="font-weight:bold">Product Name : </span>{{ $data->name }}</p>
-								<p><span style="font-weight:bold">Product Type : </span></p>
 								<p><span style="font-weight:bold">Available Color : </span>{{ $data->color }}</p>
-								<p><span style="font-weight:bold">Short Description : </span>{{ $data->description }}</p>
 					
 								<p><span style="font-weight:bold">Price : </span>{{ $data->price }}</p>
 								<p><span style="font-weight:bold">Rating : </span>{{ $data->rating }}</p>
+								Uploaded By : <example-component :message={{ $data->user }}></example-component>
 							  </div>
-							  Uploaded By : <example-component :message={{ $data->user }}></example-component>
 						 </div>
                      </div> <br>
 		        @endforeach

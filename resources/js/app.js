@@ -27,6 +27,7 @@ import Footer from './components/Footer.vue';
 import Textbox from './components/textbox.vue';
 import Form from './components/foodiesform.vue';
 import serarchbar from './components/searchbar.vue';
+import review from './components/reviews.vue';
 
 
 Vue.component('example-component',ExampleComponent);
@@ -34,7 +35,7 @@ Vue.component('example-footer',Footer);
 Vue.component('textbox',Textbox);
 Vue.component('form-example',Form);
 Vue.component('searchbar',serarchbar);
-
+Vue.component('review',review);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -44,6 +45,13 @@ Vue.component('searchbar',serarchbar);
 const app = new Vue({
  
    el: '#app'
+    
+
+});
+
+const app1 = new Vue({
+ 
+   el: '#app1'
     
 
 });

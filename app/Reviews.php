@@ -3,16 +3,18 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
+use App\Buysell;
 
-class Buysell extends Model
+class Reviews extends Model
 {
-    protected $guarded = [];
+    protected $guarded=[];
     public function user()
     {
         return $this->belongsTo('App\User');
     }
-    public function reviews()
+    public function buysell()
     {
-        return $this->hasMany('App\Reviews');
+        return $this->belongsTo('App\Buysell');
     }
 }

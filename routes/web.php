@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/new','BuysellController@index');
 Route::post('/new','BuysellController@forpost');
-Route::get('/controlpanel','BuysellController@controlpanel')->middleware('auth');;
+Route::get('/controlpanel','BuysellController@controlpanel')->middleware('auth');
 Route::get('/','MyController@show')->name('welcome');
 //for check
 Auth::routes();
@@ -36,8 +36,8 @@ Route::get('/messages','MessageController@getmessage')->middleware('auth');
 
 
 
-
-
+//Route::post('/productname','MyController@search');
+Route::get('/product {id}','MyController@details');
 
 
 //for foodies
@@ -49,7 +49,10 @@ Route::get('/messages','MessageController@getmessage')->middleware('auth');
 // Route::post('/update','MyController@updateit');
 
 
-Route::post('/buticspost','ButicsController@adminpost');
-Route::get('/getbutic','ButicsController@getit');
-Route::get('/getselectedbutic','ButicsController@getselected');
-Route::post('/selectbutic','ButicsController@updateit');
+// Route::post('/buticspost','ButicsController@adminpost');
+// Route::get('/getbutic','ButicsController@getit');
+// Route::get('/getselectedbutic','ButicsController@getselected');
+// Route::post('/selectbutic','ButicsController@updateit');
+
+ Route::post('/storereviews','ReviewController@store');
+ Route::get('/getreviews/{id}','ReviewController@getreviews');
