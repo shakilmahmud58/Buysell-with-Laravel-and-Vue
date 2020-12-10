@@ -28,7 +28,8 @@ import Textbox from './components/textbox.vue';
 import Form from './components/foodiesform.vue';
 import serarchbar from './components/searchbar.vue';
 import review from './components/reviews.vue';
-
+import orderby from './components/orderby.vue';
+import recommendation from './components/recommendation.vue';
 
 Vue.component('example-component',ExampleComponent);
 Vue.component('example-footer',Footer);
@@ -36,6 +37,8 @@ Vue.component('textbox',Textbox);
 Vue.component('form-example',Form);
 Vue.component('searchbar',serarchbar);
 Vue.component('review',review);
+Vue.component('orderby',orderby);
+Vue.component('rec',recommendation);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

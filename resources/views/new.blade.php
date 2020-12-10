@@ -14,18 +14,46 @@
                  </div>
           </form> -->
 		  <div id="app1" style="padding-top:45px;padding-left:10px"><searchbar></searchbar></div>
-          <li class="nav-item ">
+          <!-- <li class="nav-item ">
               <a class="nav-link pt-5 pl-5 pr-3" href="#">SIGN UP<span class="badge">0</span></a>
-          </li>
-          <li class="nav-item ">
-              <a class="nav-link pt-5 pl-3 pr-3" href="#">SELL PRODUCTS</a>
+          </li> -->
+
+
+		  @guest
+            <li class="nav-item " style="font-size:17px">
+			    <a class="nav-link pt-5 pl-3 pr-3" href="{{ route('login') }}">{{ __('LOGIN') }}</a>
+            </li>
+			 @else
+			 <li class="nav-item dropdown" style="font-size:17px">
+                                <a id="navbarDropdown" class="nav-link pt-5 pl-3 pr-3 dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('LOGOUT') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+             </li>
+             @endguest
+
+
+
+          <li class="nav-item" style="font-size:17px">
+              <a class="nav-link pt-5 pl-3 pr-3" href="/messages">MESSAGES</a>
           
           </li>
-          <li class="nav-item">
+          <li class="nav-item" style="font-size:17px">
               <a class="nav-link pt-5 pl-3 pr-3" href="#">CART</a>
           
           </li>
-           <li class="nav-item">
+           <li class="nav-item" style="font-size:17px">
               <a class="nav-link pt-5 pl-3 pr-3" href="controlpanel">CONTROL PANEL</a>
           
           </li>
@@ -82,14 +110,30 @@
 @endsection
 
 @section('content')
-<div class="container-fluid "> 
-		  
+<div id= "app" class="container-fluid "> 
+		    <!-- <div class="form-inline p-2 justify-content-center">
+                <label for="orderby">ORDER BY</label>
+                <select class="form-control" id="orderby">
+                   <option>Uploaded Time</option>
+                   <option>Rating</option>
+                   <option>Price</option>
+                   <option>Product Name</option>
+                 </select>
+		         <select class="form-control" name="order" id="order">
+    		       <option>ASC</option>
+                   <option>DESC</option>
+		         </select>
+		    </div> -->
+
+    
           <div class="row">
 	         <div class="col-sm-2 " style="height:500px;background-color:orange;">
 		         <p style="padding-top:10px">FOR ADDS,THIS PLACE IS FOR ADDS</p> 
 	         </div>
-	         <div id= "app" class="col-sm-8 border border-top-0">
-			    @foreach ($data as $data)
+	         <div class="col-sm-8 border border-top-0">
+			 <orderby></orderby>
+
+			    <!-- @foreach ($data as $data)
                     <div class="card bg-light">
 			             <div class="card-body" style="height:250px;background-color:">
 			                 <p style="float:left;clear:both;"> <a href="/product {{$data->id}}"><img src="{{ $data->image }}" width="150px" height="210px"></a></p>
@@ -103,12 +147,15 @@
 							  </div>
 						 </div>
                      </div> <br>
-		        @endforeach
+		        @endforeach -->
                     
 	          </div>
 	          <div class="col-sm-2" style="height:500px;background-color:blue;">
-		         <h5 style="padding-top:10px">RECOMENDATIONS</h5> 
-				 <div class="card bg-light">
+		         <h5 style="padding-top:15px">RECOMENDATIONS</h5>
+				 <br> 
+				 <rec></rec>
+				 <!-- <div class="card bg-light">
+				     
 				     <p style="padding:5px;"> Here will be the recomendation for visitor</p>
 				 </div><br>
 				 <div class="card bg-light">
@@ -119,8 +166,8 @@
 				 </div><br>
 				 <div class="card bg-light">
 				     <p style="padding:5px;"> Here will be the recomendation for visitor</p>
-				 </div>
-	          </div>
+				 </div>-->
+	          </div> 
            </div>   
 
       </div>

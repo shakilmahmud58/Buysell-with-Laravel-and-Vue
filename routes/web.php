@@ -13,14 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/new','BuysellController@index');
+//Route::get('/new','BuysellController@index');
+Route::get('/','BuysellController@index')->name('welcome');
+Route::post('/getdata','BuysellController@index2');
+Route::post('/','BuysellController@index3');
+Route::get('/recommendation','BuysellController@recommendation');
 Route::post('/new','BuysellController@forpost');
 Route::get('/controlpanel','BuysellController@controlpanel')->middleware('auth');
-Route::get('/','MyController@show')->name('welcome');
+//Route::get('/','MyController@show')->name('welcome');
 //for check
 Auth::routes();
 //for admin
- Route::get('/home', 'HomeController@index')->name('home');
+ Route::get('/home','BuysellController@index')->name('home');
+
+// Route::get('/home', 'HomeController@index')->name('home');
 // Route::get('/admin', 'AdminController@index')->name('admin.dashboard');
 // Route::get('/adminlogin', 'Auth\AdminLoginController@showloginform')->name('admin.login');
 // Route::post('/adminlogin', 'Auth\AdminLoginController@login')->name('admin.login.submit');
@@ -37,7 +43,7 @@ Route::get('/messages','MessageController@getmessage')->middleware('auth');
 
 
 //Route::post('/productname','MyController@search');
-Route::get('/product {id}','MyController@details');
+Route::get('/product{id}','MyController@details');
 
 
 //for foodies

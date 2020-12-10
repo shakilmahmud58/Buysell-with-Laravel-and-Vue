@@ -1,8 +1,8 @@
 <template>
            <div>
+              <form v-on:submit=submitit>
                <input type='text' size='40' v-model='itemname' placeholder="Search...">
-               <div v-for="name in names">
-                 <p>{{name}}</p>
+              </form> 
                </div>
             </div>
 </template>
@@ -11,7 +11,6 @@
 
     export default {
         updated() {
-            this.getnames(this.itemname);
         },
         data(){
             return{
@@ -21,7 +20,7 @@
 
         },
         methods:{
-            getnames(x){
+            submitit(){
               axios.post('/productname',{name:this.itemname})
               .then(res=>{
                   this.names=res.data;

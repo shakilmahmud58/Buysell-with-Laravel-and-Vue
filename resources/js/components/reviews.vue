@@ -1,9 +1,13 @@
 <template>
            <div>
-           <form v-on:submit="submitreviews">
+           <form v-on:submit="submitreviews" v-if="this.userid">
                 <textarea class="form-control" style="width:250px" cols="30" rows="2"  v-model="text" placeholder="Type Your Reviews"></textarea>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
+            <div v-else>
+               You must have to <a href="/login">login</a> for share a review for this product
+            </div>
+
             {{this.msg}}
                <div id="review" v-for="review in reviews">
                 <p>{{review.reviews}}</p>
@@ -16,7 +20,7 @@
 <script>
 
     export default {
-        props:['productid'],
+        props:['productid','userid'],
         mounted() {
            this.getreviews();
            console.log(this.productid);

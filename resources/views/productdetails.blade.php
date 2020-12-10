@@ -19,11 +19,12 @@
              </div>
              <div class="pt-4 pl-5">
                 <p style="font-weight:bold">Reviews for this product</p>
-                @if($user)                
+                <!-- @if($user)                
                 <review :productid={{ $data->id }}></review>
                 @else
                 <h6>You must have to <a href="/login">login</a> first</h6>
-                @endif
+                @endif -->
+                <review :productid={{ $data->id }} :userid={{$user?true:0}}></review>
              </div>
              </div>
          </div>
