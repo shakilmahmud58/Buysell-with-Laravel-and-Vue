@@ -11,9 +11,9 @@
                          <example-component :message={{ $data->user }}></example-component>
                          <br>
                 @endforeach  
-                @foreach(Auth::user()->unreadNotifications as $x)
+                <!-- @foreach(Auth::user()->unreadNotifications as $x)
                 {{ $x->data['value'] }}
-                @endforeach       
+                @endforeach        -->
              </div>
          </div>
         </div>

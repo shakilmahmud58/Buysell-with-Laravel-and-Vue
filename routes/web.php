@@ -13,14 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/new','BuysellController@index');
+//Route::get('/new','BuysellController@index');
+Route::get('/','BuysellController@index')->name('welcome');
+Route::post('/getdata','BuysellController@index2');
+Route::post('/','BuysellController@index3');
+Route::get('/recommendation','BuysellController@recommendation');
 Route::post('/new','BuysellController@forpost');
-Route::get('/controlpanel','BuysellController@controlpanel')->middleware('auth');;
-Route::get('/','MyController@show')->name('welcome');
+Route::get('/controlpanel','BuysellController@controlpanel')->middleware('auth');
+//Route::get('/','MyController@show')->name('welcome');
 //for check
 Auth::routes();
 //for admin
- Route::get('/home', 'HomeController@index')->name('home');
+ Route::get('/home','BuysellController@index')->name('home');
+
+// Route::get('/home', 'HomeController@index')->name('home');
 // Route::get('/admin', 'AdminController@index')->name('admin.dashboard');
 // Route::get('/adminlogin', 'Auth\AdminLoginController@showloginform')->name('admin.login');
 // Route::post('/adminlogin', 'Auth\AdminLoginController@login')->name('admin.login.submit');
@@ -36,8 +42,23 @@ Route::get('/messages','MessageController@getmessage')->middleware('auth');
 
 
 
+//Route::post('/productname','MyController@search');
+Route::get('/product{id}','MyController@details');
 
 
+//for foodies
+// Route::get('/foodies','MyController@showfoodies')->name('foodies');
+// Route::get('/admin','MyController@admin')->name('adminhome');
+// Route::post('/admin','MyController@adminpost');
+// Route::get('/getit','MyController@getit');
+// Route::get('/getselected','MyController@getselected');
+// Route::post('/update','MyController@updateit');
+
+
+// Route::post('/buticspost','ButicsController@adminpost');
+// Route::get('/getbutic','ButicsController@getit');
+// Route::get('/getselectedbutic','ButicsController@getselected');
+// Route::post('/selectbutic','ButicsController@updateit');
 
 
 // //for foodies
@@ -53,3 +74,6 @@ Route::get('/messages','MessageController@getmessage')->middleware('auth');
 // Route::get('/getbutic','ButicsController@getit');
 // Route::get('/getselectedbutic','ButicsController@getselected');
 // Route::post('/selectbutic','ButicsController@updateit');
+ Route::post('/storereviews','ReviewController@store');
+ Route::get('/getreviews/{id}','ReviewController@getreviews');
+
