@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use App\Message;
 use App\User;
 use App\Messagelist;
-use Notification;
-use App\Notifications\MessageSent;
+//use Notification;
+//use App\Notifications\MessageSent;
+use App\Events\MessageSent;
+
 class MessageController extends Controller
 {
     
@@ -41,14 +43,16 @@ class MessageController extends Controller
     }
     public function postmessage(Request $request,User $id)
     {
+        
         $x = $id->id;
         $y =  auth()->user()->id;
+       
         $value=$y;
         $z=Messagelist::where(function($query) use($x,$y){
             $query->where('userid',$y)->where('user_id',$x);
            })
-            ->count();;
-        Notification::send(User::find($x),new MessageSent($value)); 
+            ->count();
+       // Notification::send(User::find($x),new MessageSent($value)); 
         if($z==0)
         {
            Messagelist::create([
@@ -60,12 +64,14 @@ class MessageController extends Controller
               'user_id'=> $y
               ]);
         }
-        return Message::create([
+
+        $data = Message::create([
            'from' => auth()->user()->id,
            'to'   => $x,
            'text' => $request->text
        ]);
-      
+       event(new MessageSent($data));
+       return $data;
     }
    
 }

@@ -2,29 +2,29 @@
 
 namespace App\Listeners;
 
-use App\Events\SendMessageEvent;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class SendMessageListener
+class SendMessage
 {
+    public $message;
     /**
      * Create the event listener.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($message)
     {
-        //
+        $this->message=$message;
     }
 
     /**
      * Handle the event.
      *
-     * @param  SendMessageEvent  $event
+     * @param  object  $event
      * @return void
      */
-    public function handle(SendMessageEvent $event)
+    public function handle($event)
     {
         //
     }

@@ -23,10 +23,11 @@
         props:['productid','userid'],
         mounted() {
            this.getreviews();
+           this.listen();
            console.log(this.productid);
         },
         updated(){
-          this.getreviews();
+         
         },
         data(){
             return{
@@ -43,7 +44,15 @@
                 axios.post("/storereviews",{review:this.text,productid:this.productid})
                 .then(res=>{
                   this.text='';
-                  console.log(res.data);
+                  console.log('ok'+res.data);
+                })
+            },
+            listen(){
+             Echo.channel('product'+this.productid)
+              .listen('SendMessage',(data)=>{
+                  console.log(data.data.reviews);
+                  this.msg='';
+                  this.reviews.unshift(data.data);
                 })
             },
             getreviews(){

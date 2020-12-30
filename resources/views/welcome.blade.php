@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        
         <title>MY FIRST LARAVEL</title>
 
         <!-- Fonts -->
@@ -83,8 +83,6 @@
             <div class="content">
                 <div class="title m-b-md">
                     WELCOME TO MY LARAVEL PROJECT
-
-                </div>
                 
         </div>
       </div>

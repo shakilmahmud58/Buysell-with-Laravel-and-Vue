@@ -77,3 +77,9 @@ Route::get('/product{id}','MyController@details');
  Route::post('/storereviews','ReviewController@store');
  Route::get('/getreviews/{id}','ReviewController@getreviews');
 
+
+
+
+
+
+ //broadcasting route

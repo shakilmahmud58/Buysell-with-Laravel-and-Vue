@@ -4,7 +4,7 @@
      <p v-for="(message,index) in messages" v-bind:class="{from:getclass(message.from),to:getclassto(message.from)}">{{message.text}}{{ message.from }}</p>
      </div><br><br>
      <div class=text>
-     <form v-on:submit=submitit action="/getmessage" method="POST">
+     <form v-on:submit=submitit>
         <label for ="text"></label>
         <input class="box" v-model="text" size="50" type="text" id="text" name="text">
         <button type="submit" class="btn btn-success">Send</button>  
@@ -16,7 +16,7 @@
 
    export default{
  
-    props:['to'],  
+    props:['to','from'],  
     data(){
        return{
           text:'',
@@ -25,6 +25,10 @@
     },
     mounted(){
        this.getall();
+       this.listen();
+    },
+   updated(){
+    
     },
     methods:{ 
        getclass(x){
@@ -44,12 +48,19 @@
            axios.post('/message/'+this.to,{
               text : this.text
             })
-           .then((response)=>{
-              this.messages.push(response.data);
+           .then((res)=>{ 
               this.text ='';
+              this.messages.push(res.data);
               
           });
         },
+        listen(){
+             Echo.channel('message_'+this.from)
+              .listen('MessageSent',(data)=>{
+                  alert(data.data.text);
+                  this.messages.push(data.data);
+                })
+            },
         getall(){
            axios.get('/message/'+this.to +'/get')
            .then((res)=>{

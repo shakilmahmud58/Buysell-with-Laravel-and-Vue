@@ -8,7 +8,7 @@
              <div class="card-header">{{$user->username}}</div>
              <div class="card-body">
                 <div id="app">            
-                   <textbox :to = {{ $user->id }} ></textbox>    
+                   <textbox :to = {{ $user->id }} :from = {{auth()->user()->id}}></textbox>    
                 </div>
              </div>
          </div>

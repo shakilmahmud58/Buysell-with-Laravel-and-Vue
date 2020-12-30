@@ -6,20 +6,21 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Reviews;
 use App\Buysell;
-
+use App\Events\SendMessage;
 class ReviewController extends Controller
 {
    public function store(Request $request)
    {
       $rewiew= $request->review;
       $productid= $request->productid;
+      
       $data = Reviews::create([
         'user_id' => auth()->user()->id,
         'useremail' => auth()->user()->email,
         'buysell_id'=> $productid,
         'reviews' => $rewiew
     ]);
-    return $data;
+    event(new SendMessage($data));
    }
    public function getreviews(Buysell $id)
    {

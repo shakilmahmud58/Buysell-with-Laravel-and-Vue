@@ -23,16 +23,16 @@ window.Vue = require('vue');
 
 
 import ExampleComponent from './components/ExampleComponent.vue';
-import Footer from './components/Footer.vue';
 import Textbox from './components/textbox.vue';
 import Form from './components/foodiesform.vue';
+import broad from './components/broadcast.vue';
 import serarchbar from './components/searchbar.vue';
 import review from './components/reviews.vue';
 import orderby from './components/orderby.vue';
 import recommendation from './components/recommendation.vue';
 
 Vue.component('example-component',ExampleComponent);
-Vue.component('example-footer',Footer);
+Vue.component('broad',broad);
 Vue.component('textbox',Textbox);
 Vue.component('form-example',Form);
 Vue.component('searchbar',serarchbar);
@@ -52,9 +52,9 @@ const app = new Vue({
 
 });
 
-const app1 = new Vue({
+// const app1 = new Vue({
  
-   el: '#app1'
+//    el: '#app1'
     
 
-});
+// });
