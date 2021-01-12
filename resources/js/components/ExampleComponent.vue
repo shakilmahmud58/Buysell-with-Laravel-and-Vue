@@ -1,16 +1,24 @@
 <template>
-    <div>
+    
         <span><a :href='`/message/${this.message.id}`'> {{this.message.username}}</a></span>
-    </div>
 </template>
 
 <script>
     export default {
        props:['message'],
+       created(){
+
+       },
+       mounted(){
+       },
+       updated(){
+
+       },
        data(){
            return {
-               messages:[]
            };
+       },
+       methods:{
        }
        
     }     

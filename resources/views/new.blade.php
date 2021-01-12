@@ -46,8 +46,7 @@
 
 
           <li class="nav-item" style="font-size:17px">
-              <a class="nav-link pt-5 pl-3 pr-3" href="/messages">MESSAGES</a>
-          
+		    <a class="nav-link pt-5 pl-3 pr-3" href="/messages"> MESSAGES<unreadmsg :user={{ $user? $user->id: 0}}></unreadmsg></a>		 
           </li>
           <li class="nav-item" style="font-size:17px">
               <a class="nav-link pt-5 pl-3 pr-3" href="#">CART</a>
@@ -110,7 +109,7 @@
 @endsection
 
 @section('content')
-<div id= "app" class="container-fluid "> 
+<div  class="container-fluid "> 
 		    <!-- <div class="form-inline p-2 justify-content-center">
                 <label for="orderby">ORDER BY</label>
                 <select class="form-control" id="orderby">
@@ -132,6 +131,7 @@
 	         </div>
 	         <div class="col-sm-8 border border-top-0">
 			 <orderby></orderby>
+             <notification :user={{ $user? $user->id: 0 }}></notification>
 
 			    <!-- @foreach ($data as $data)
                     <div class="card bg-light">

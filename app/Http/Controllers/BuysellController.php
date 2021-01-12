@@ -12,7 +12,8 @@ class BuysellController extends Controller
     public function index(Request $request)
     {
         $data = Buysell :: all();
-        return view('new',['data' => $data]);
+        $user = auth()->user();
+        return view('new',['data' => $data,'user'=>$user]);
     }
     public function index3(Request $request)
     {

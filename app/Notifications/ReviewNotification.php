@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class MessageSent extends Notification
+class ReviewNotification extends Notification
 {
     use Queueable;
 
@@ -16,10 +16,9 @@ class MessageSent extends Notification
      *
      * @return void
      */
-    public $value;
-    public function __construct($value)
+    public function __construct()
     {
-        $this->value = $value;
+        //
     }
 
     /**
@@ -30,7 +29,7 @@ class MessageSent extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'];
+        return ['mail'];
     }
 
     /**
@@ -41,10 +40,10 @@ class MessageSent extends Notification
      */
     public function toMail($notifiable)
     {
-      /*  return (new MailMessage)
+        return (new MailMessage)
                     ->line('The introduction to the notification.')
                     ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');*/
+                    ->line('Thank you for using our application!');
     }
 
     /**
@@ -56,7 +55,7 @@ class MessageSent extends Notification
     public function toArray($notifiable)
     {
         return [
-            'value'=>$this->value
+            //
         ];
     }
 }

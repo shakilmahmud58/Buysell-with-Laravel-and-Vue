@@ -1,13 +1,13 @@
 <template>
-   <div>
+   <div class="body" data-spy="scroll" data-target="">
     <div v-bind:class="{back:true}">
      <p v-for="(message,index) in messages" v-bind:class="{from:getclass(message.from),to:getclassto(message.from)}">{{message.text}}{{ message.from }}</p>
      </div><br><br>
      <div class=text>
-     <form v-on:submit=submitit>
+     <form v-on:submit=submitit class="form-inline">
         <label for ="text"></label>
-        <input class="box" v-model="text" size="50" type="text" id="text" name="text">
-        <button type="submit" class="btn btn-success">Send</button>  
+        <input class="form-control box" v-model="text" type="text" id="text" name="text" placeholder="Type your text">
+        <button type="submit" class="btn">Send</button>  
       </form> 
       </div>
    </div>
@@ -24,11 +24,14 @@
        };
     },
     mounted(){
+       alert(document.body.scrollHeight);
+       this.read();
        this.getall();
        this.listen();
+       this.notilisten();
     },
    updated(){
-    
+      this.read();
     },
     methods:{ 
        getclass(x){
@@ -36,6 +39,12 @@
           return true;
           else
           return false;
+       },
+       read(){
+         axios.get('/readnotification'+this.to)
+           .then((res)=>{
+              console.log('Read it');
+           });
        },
        getclassto(x){
           if(x==this.to)
@@ -55,12 +64,17 @@
           });
         },
         listen(){
-             Echo.channel('message_'+this.from)
+             Echo.private('message_'+this.from)
               .listen('MessageSent',(data)=>{
-                  alert(data.data.text);
                   this.messages.push(data.data);
-                })
+                });
             },
+        notilisten(){
+           Echo.private('App.User.'+this.from)
+            .notification((notification)=>{
+               alert('New message from'+notification.data.from);
+            });
+        },   
         getall(){
            axios.get('/message/'+this.to +'/get')
            .then((res)=>{
@@ -73,7 +87,9 @@
 <style scoped>
 .back{
    max-height:350px;
-   overflow-y:scroll;
+   overflow-y:auto;
+   font-family:"Times New Roman",Times,serif;
+   font-size:18px;
 }
 .from{
    background-color:skyblue;
@@ -91,16 +107,24 @@
    float:left;
    clear:both;
 }
-
-form{
-
-  position:absolute;
-  bottom:0px;
-  right:50px
-}
 .box{
-border:none;
-border-bottom:2px solid cadetblue;
+   width:150px;
+   box-sizing:border-box;
+   border-bottom:2px solid #ccc;
+   border-right:2px solid #ccc;
+   border-radius:4px;
+}
+.box:focus{
+   
+   width:85%;
+   color:black;
 
+}
+.btn{
+   
+   border-radius:4px;
+   background-color:#ccc;
+   font-weight:bold;
+   color:black;
 }
 </style>

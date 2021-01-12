@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use App\Message;
 use App\User;
 use App\Messagelist;
-//use Notification;
-//use App\Notifications\MessageSent;
+use Notification;
+use App\Notifications\ReceivedMessage;
 use App\Events\MessageSent;
 
 class MessageController extends Controller
@@ -37,9 +37,7 @@ class MessageController extends Controller
     public function getmessage()
     {
         $y=auth()->user()->id;
-        $allmsg = Messagelist::where('userid',$y)->get();
-        
-        return view('message',['data'=>$allmsg]);
+        return view('message',['user'=>$y]);
     }
     public function postmessage(Request $request,User $id)
     {
@@ -64,14 +62,30 @@ class MessageController extends Controller
               'user_id'=> $y
               ]);
         }
-
+        Messagelist::where('userid',$y)
+                     ->where('user_id',$x)
+                     ->update(['updated_at'=>now()]);
+        Messagelist::where('userid',$x)
+                     ->where('user_id',$y)
+                     ->update(['updated_at'=>now()]);             
+            
         $data = Message::create([
            'from' => auth()->user()->id,
            'to'   => $x,
            'text' => $request->text
        ]);
+       Notification::send(User::find($x),new ReceivedMessage($data));
        event(new MessageSent($data));
        return $data;
+    }
+    public function example()
+    {
+        $y=auth()->user()->id;
+        $allmsg = Messagelist::with('user')->where('userid',$y)->orderBy('updated_at','desc')->get();
+        return response([
+            'user' => $y,
+            'message' =>$allmsg
+        ]);
     }
    
 }

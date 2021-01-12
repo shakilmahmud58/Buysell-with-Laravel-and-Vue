@@ -38,6 +38,8 @@ Route::post('/message/{id}','MessageController@postmessage');
 
 Route::get('/message/{id}/get','MessageController@messageget');
 Route::get('/messages','MessageController@getmessage')->middleware('auth');
+Route::get('/example','MessageController@example')->middleware('auth');
+
 //Route::get('/notifications','HomeController@n')->middleware('auth');
 
 
@@ -83,3 +85,8 @@ Route::get('/product{id}','MyController@details');
 
 
  //broadcasting route
+ Route::get('/notify','NotificationController@store');
+ Route::get('/readnotification{id}','NotificationController@read');
+ Route::get('/get{id}','NotificationController@unreadmsg');
+
+ Route::get('/check{id}','NotificationController@check');

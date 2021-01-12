@@ -48,6 +48,7 @@ import ExampleComponent from './ExampleComponent.vue';
            this.sentdata();    
 
         },
+        props:['user'],
         data(){
           return{
               datas:[],

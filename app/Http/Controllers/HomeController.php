@@ -30,8 +30,4 @@ class HomeController extends Controller
         //dd($z);
         return view('home',['x'=>$x]);
     }
-    public function notifications()
-    {
-        
-    }
 }
