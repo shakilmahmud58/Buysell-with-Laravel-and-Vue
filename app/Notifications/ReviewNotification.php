@@ -1,24 +1,29 @@
 <?php
 
 namespace App\Notifications;
-
+use App\Reviews;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Notifications\Messages\BroadcastMessage;
 
 class ReviewNotification extends Notification
 {
     use Queueable;
-
+    public $reviews;
+    public $username;
+    public $pname;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($data)
     {
-        //
+        $this->reviews = $data['data'];
+        $this->username = $data['user'];
+        $this->pname  = $data['pname'];
     }
 
     /**
@@ -29,7 +34,7 @@ class ReviewNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['database','broadcast'];
     }
 
     /**
@@ -55,7 +60,15 @@ class ReviewNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'data'=>$this->reviews,
+            'name' => $this->username,
+            'product'=>$this->pname
         ];
+    }
+    public function toBroadcast()
+    {
+        return new BroadcastMessage([
+            'data' => $this->reviews,
+        ]);
     }
 }

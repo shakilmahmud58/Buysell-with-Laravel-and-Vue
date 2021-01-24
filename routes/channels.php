@@ -20,3 +20,6 @@ Broadcast::channel('App.User.{id}', function ($user, $id) {
 Broadcast::channel('message_{id}',function($user){
   return true;
 });
+Broadcast::channel('product{id}',function($user){
+  return true;
+});

@@ -16,9 +16,10 @@
                  <br>
                  <div v-for="data in datas">
                    <div class="card bg-light">
-			         <div class="card-body" style="height:250px;background-color:">
-                           <p style="float:left;clear:both;"> <a :href="'/product'+ data.id"><img :src="data.image" width="150px" height="210px"></a></p>
-				            <div style="text-align:left;margin-left:300px;border-left:solid black 1px;padding-left:15px;">
+			         <div class="card-body" style="background-color:">
+                         <div  style="display:flex; flex-wrap:wrap">
+                           <div style="margin-left:40px;"> <a :href="'/product'+ data.id"><img :src="data.image" width="200px" height="210px"></a></div>
+				            <div style="margin-left:40px; padding-top:20px">
 							    <p><span style="font-weight:bold">Product Name : </span>{{ data.name }}</p>
 								<p><span style="font-weight:bold">Available Color : </span>{{ data.color }}</p>
 					
@@ -26,7 +27,7 @@
 								<p><span style="font-weight:bold">Rating : </span>{{ data.rating }}</p>
                                 Uploaded By : <ExampleComponent v-bind:message="data.user"></ExampleComponent>
                           </div>
-                     
+                         </div>
                      </div>
                     </div>
                  </div>            
@@ -40,8 +41,7 @@ import ExampleComponent from './ExampleComponent.vue';
          ExampleComponent,
         },
         mounted(){
-             this.getdata();
-            console.log(this.type + this.orderby);
+             this.sentdata();
         },
         updated() {
             
@@ -57,12 +57,6 @@ import ExampleComponent from './ExampleComponent.vue';
           }
         },
         methods:{
-            getdata(){
-               axios.post('/',{type:this.type,order:this.orderby}).then(res=>{
-                   this.datas=res.data;
-
-               })
-           },
            sentdata(){
                axios.post('/getdata',{type:this.type,order:this.orderby}).then(res=>{
                    this.datas=res.data;

@@ -25,7 +25,7 @@ class BuysellController extends Controller
     {
         $x = $request->type;
         $y = $request->order;
-        $data = Buysell::orderBy($x,$y)->get(); 
+        $data = Buysell::with('user')->orderBy($x,$y)->get(); 
         return $data;
     }
     public function controlpanel()
@@ -41,7 +41,7 @@ class BuysellController extends Controller
         $price = request('price');
         $rating = request('rating');
         $currentuser= auth()->user()->id;
-
+        $user = auth()->user();
         //dd($path);
         Buysell :: create([
             'name' => $name,
@@ -53,7 +53,7 @@ class BuysellController extends Controller
             'user_id' => $currentuser
             ]);
         $data = Buysell :: all();
-        return view('new',['data' => $data]);
+        return view('new',['data' => $data,'user'=>$user]);
     }
     public function recommendation()
     {

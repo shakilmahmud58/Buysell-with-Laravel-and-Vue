@@ -16,14 +16,13 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/new','BuysellController@index');
 Route::get('/','BuysellController@index')->name('welcome');
 Route::post('/getdata','BuysellController@index2');
-Route::post('/','BuysellController@index3');
+//Route::post('/','BuysellController@index3');
 Route::get('/recommendation','BuysellController@recommendation');
-Route::post('/new','BuysellController@forpost');
+Route::post('/home','BuysellController@forpost');
 Route::get('/controlpanel','BuysellController@controlpanel')->middleware('auth');
 //Route::get('/','MyController@show')->name('welcome');
 //for check
 Auth::routes();
-//for admin
  Route::get('/home','BuysellController@index')->name('home');
 
 // Route::get('/home', 'HomeController@index')->name('home');
@@ -90,3 +89,9 @@ Route::get('/product{id}','MyController@details');
  Route::get('/get{id}','NotificationController@unreadmsg');
 
  Route::get('/check{id}','NotificationController@check');
+ Route::get('/nothing{id}','ReviewController@nothing');
+
+ Route::get('/reviewnoti','NotificationController@getrevnoti');
+ Route::get('/countunread','NotificationController@countunread');
+ Route::post('/readit','NotificationController@readit');
+ Route::get('/notifications','ReviewController@shownoti');

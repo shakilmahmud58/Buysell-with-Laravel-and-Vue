@@ -7,7 +7,7 @@
                 <div class="card-header"><h3>ProductDetails</h3></div>
 
                 <div class="card-body">
-                    <form method="POST" action="/new" enctype="multipart/form-data">
+                    <form method="POST" action="/home" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">

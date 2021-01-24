@@ -36,6 +36,8 @@ import review from './components/reviews.vue';
 import orderby from './components/orderby.vue';
 import notification from './components/notification.vue';
 import unreadmsg from './components/unreadmsg.vue';
+import unreadnoti from './components/unreadnoti.vue';
+import shownoti from './components/shownoti.vue';
 import recommendation from './components/recommendation.vue';
 import messagelist from './components/messagelist';
 
@@ -61,6 +63,8 @@ Vue.component('review',review);
 Vue.component('orderby',orderby);
 Vue.component('notification',notification);
 Vue.component('unreadmsg',unreadmsg);
+Vue.component('unreadnoti',unreadnoti);
+Vue.component('shownoti',shownoti);
 Vue.component('rec',recommendation);
 Vue.component('messagelist',messagelist);
 /**

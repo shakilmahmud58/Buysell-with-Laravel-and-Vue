@@ -7,8 +7,7 @@
             <div v-else>
                You must have to <a href="/login">login</a> for share a review for this product
             </div>
-
-            {{this.msg}}
+               <div>{{ this.msg}}</div>
                <div id="review" v-for="review in reviews">
                 <p>{{review.reviews}}</p>
                 <h6>...by {{review.useremail}}</h6>
@@ -21,30 +20,30 @@
 
     export default {
         props:['productid','userid'],
-        mounted() {
+        mounted() { 
            this.getreviews();
            this.listen();
-           console.log(this.productid);
+           console.log(this.userid);
+           this.notilisten();
         },
         updated(){
-         
+
+            this.getreviews();
         },
         data(){
             return{
                text:'',
-               msg : '',
-               reviews:[]
+               msg :'',
+               reviews:[],
+        
             }
-
         },
         methods:{
-
             submitreviews(e){
                 e.preventDefault();
                 axios.post("/storereviews",{review:this.text,productid:this.productid})
                 .then(res=>{
                   this.text='';
-                  console.log('ok'+res.data);
                 })
             },
             listen(){
@@ -55,20 +54,30 @@
                   this.reviews.unshift(data.data);
                 })
             },
+            notilisten(){
+               Echo.private('App.User.'+this.userid)
+                  .notification((notification)=>{
+                      console.log(notification.type);
+              });
+            },
             getreviews(){
-                axios.get('/getreviews/'+this.productid).then(res=>{    
-                
-                  if(res.data.length===0){
-                      this.msg = 'No reviews available';
-                  }
-                  else{
-                      this.reviews = res.data;
-                      this.msg='';
-                  }
+
+                axios.get('/getreviews/'+this.productid).then(res=>{  
+                   
+                    if(res.data.length==0)
+                    {
+                         this.msg='No reviews available';
+                         console.log('updated');
+                    }
+                    else{
+
+                        this.msg='';
+                        this.reviews = res.data;
+                    }  
                    
                 })
-            }
-
+            },
+            
        }
     }
 </script>

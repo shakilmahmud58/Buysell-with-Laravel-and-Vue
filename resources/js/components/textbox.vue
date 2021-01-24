@@ -1,16 +1,17 @@
 <template>
-   <div class="body" data-spy="scroll" data-target="">
-    <div v-bind:class="{back:true}">
-     <p v-for="(message,index) in messages" v-bind:class="{from:getclass(message.from),to:getclassto(message.from)}">{{message.text}}{{ message.from }}</p>
-     </div><br><br>
-     <div class=text>
-     <form v-on:submit=submitit class="form-inline">
+
+<div class="body" >
+     <div ref="demo" class="back" >
+        <p v-for="(message,index) in messages" v-bind:class="{from:getclass(message.from),to:getclassto(message.from)}">{{message.text}}{{ message.from }}</p>
+     </div><br>
+     <div class="text">
+     <form v-on:submit="submitit" class="form-inline">
         <label for ="text"></label>
-        <input class="form-control box" v-model="text" type="text" id="text" name="text" placeholder="Type your text">
-        <button type="submit" class="btn">Send</button>  
+        <input class="form-control box" v-model="text" type="text" id="text" name="text" placeholder="Type your text">  
+        <button type="submit" class="btn">Send</button>
       </form> 
       </div>
-   </div>
+       </div>      
 </template>
 <script>
 
@@ -24,7 +25,8 @@
        };
     },
     mounted(){
-       alert(document.body.scrollHeight);
+       this.scrollto();
+       this.scrolltolast();
        this.read();
        this.getall();
        this.listen();
@@ -32,6 +34,7 @@
     },
    updated(){
       this.read();
+      this.scrolltolast();
     },
     methods:{ 
        getclass(x){
@@ -43,7 +46,6 @@
        read(){
          axios.get('/readnotification'+this.to)
            .then((res)=>{
-              console.log('Read it');
            });
        },
        getclassto(x){
@@ -72,9 +74,14 @@
         notilisten(){
            Echo.private('App.User.'+this.from)
             .notification((notification)=>{
-               alert('New message from'+notification.data.from);
             });
-        },   
+        },
+        scrollto(){
+          
+        },
+        scrolltolast(){
+            this.$refs.demo.scrollTop=this.$refs.demo.scrollHeight;
+        },
         getall(){
            axios.get('/message/'+this.to +'/get')
            .then((res)=>{
@@ -85,15 +92,23 @@
  }
 </script>
 <style scoped>
+p{
+   margin:1px;
+   max-width:70%;
+}
 .back{
-   max-height:350px;
+   max-height:300px;
    overflow-y:auto;
    font-family:"Times New Roman",Times,serif;
    font-size:18px;
 }
 .from{
    background-color:skyblue;
-   padding:10px;
+   padding:3px;
+   margin-bottom:10px;
+   margin-top:10px;
+   padding-left:10px;
+   padding-right:10px;
    border-radius:5px;
    float:right;
    clear:both;
@@ -101,25 +116,22 @@
 }
 .to{
    background-color:white;
-   padding:10px;
+   padding:3px;
+   padding-left:10px;
+   padding-right:10px;
    border:solid grey 1px;
    border-radius:5px;
    float:left;
    clear:both;
 }
 .box{
-   width:150px;
+   width:85%;
    box-sizing:border-box;
    border-bottom:2px solid #ccc;
    border-right:2px solid #ccc;
    border-radius:4px;
 }
-.box:focus{
-   
-   width:85%;
-   color:black;
 
-}
 .btn{
    
    border-radius:4px;

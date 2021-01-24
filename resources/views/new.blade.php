@@ -1,6 +1,6 @@
 @extends('layouts.new')
 @section('nav')
-<nav class="navbar navbar-expand-sm bg-dark  justify-content-center fixed-top">
+<nav class="navbar navbar-expand-sm bg-dark  justify-content-center">
 	  
       <a class="navbar-brand" href="#">LOGO</a>
       <ul class="navbar-nav">
@@ -49,7 +49,7 @@
 		    <a class="nav-link pt-5 pl-3 pr-3" href="/messages"> MESSAGES<unreadmsg :user={{ $user? $user->id: 0}}></unreadmsg></a>		 
           </li>
           <li class="nav-item" style="font-size:17px">
-              <a class="nav-link pt-5 pl-3 pr-3" href="#">CART</a>
+              <a class="nav-link pt-5 pl-3 pr-3" href="/notifications">NOTIFICATIONS<unreadnoti :user={{ $user? $user->id: 0}}></unreadnoti></a>
           
           </li>
            <li class="nav-item" style="font-size:17px">
@@ -61,7 +61,7 @@
 @endsection
 
 @section('carousel')
-<div  id="demo" class="carousel slide" data-ride="carousel" style="text-align:center;padding-top:122px;">      
+<div  id="demo" class="carousel slide" data-ride="carousel" style="text-align:center;">      
 	           <ul class="carousel-indicators">
 		      <li data-target="#demo" data-slide-to="0" class="active"></li>
 	          <li data-target="#demo" data-slide-to="1"></li>

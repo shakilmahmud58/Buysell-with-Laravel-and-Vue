@@ -7,24 +7,27 @@
           <div class="card">
              <div class="card-header">Product Details</div>
               <div id="app" class="card-body">
-              <p style="float:left;clear:both;"><img src="{{ $data->image }}" width="200px" height="260px"></p>
-              <div style="text-align:left;margin-left:300px;border-left:solid black 1px;padding-left:15px;padding-top:30px">
+              <div style="display:flex; flex-wrap:wrap">
+              <div><img src="{{ $data->image }}"  width="250px" height="270px"></div>
+              <div style="margin-left:40px; padding-top:20px">
               <p><span style="font-weight:bold">Product Name : </span>{{ $data->name }}</p>
-			  <p><span style="font-weight:bold">Available Color : </span>{{ $data->color }}</p>
+			        <p><span style="font-weight:bold">Available Color : </span>{{ $data->color }}</p>
               <p class=""><span style="font-weight:bold">Short Description : </span>{{ $data->description }}</p>
               <p><span style="font-weight:bold">Product Type : </span></p>
               <p><span style="font-weight:bold">Price : </span>{{ $data->price }}</p>
-			  <p><span style="font-weight:bold">Rating : </span>{{ $data->rating }}</p>
+			        <p><span style="font-weight:bold">Rating : </span>{{ $data->rating }}</p>
                Uploaded By : <example-component :message={{ $data->user }}></example-component>
              </div>
-             <div class="pt-4 pl-5">
+             </div>
+             <!-- <broad :id={{ $data->id }}></broad> -->
+             <div class="pt-4 pl-4">
                 <p style="font-weight:bold">Reviews for this product</p>
                 <!-- @if($user)                
                 <review :productid={{ $data->id }}></review>
                 @else
                 <h6>You must have to <a href="/login">login</a> first</h6>
                 @endif -->
-                <review :productid={{ $data->id }} :userid={{$user?true:0}}></review>
+                <review :productid={{ $data->id }} :userid={{$user?$user->id:0}}></review>
              </div>
              </div>
          </div>
