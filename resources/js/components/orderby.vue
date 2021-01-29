@@ -40,11 +40,13 @@ import ExampleComponent from './ExampleComponent.vue';
         components:{
          ExampleComponent,
         },
+        created(){
+         
+        },
         mounted(){
              this.sentdata();
         },
         updated() {
-            
            this.sentdata();    
 
         },

@@ -43,7 +43,7 @@ Route::get('/example','MessageController@example')->middleware('auth');
 
 
 
-//Route::post('/productname','MyController@search');
+Route::post('/productname','MyController@search');
 Route::get('/product{id}','MyController@details');
 
 

@@ -1,5 +1,8 @@
 <template>
-          <span v-if="this.user">{{this.x}}</span>
+          <span v-if="this.user" >
+          <span v-if="this.x" class="badge badge-danger">{{this.x}}</span>
+          <span v-else></span>
+          </span>
           <span v-else></span>  
 </template>
 

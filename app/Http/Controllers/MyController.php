@@ -22,7 +22,7 @@ class MyController extends Controller
     public function search(Request $request)
     {
        $data= $request->name;
-       $names= Buysell::where('name','LIKE',"%{$data}%")->pluck('name');
+       $names= Buysell::where('name','LIKE',"%{$data}%")->take(5)->get();
        return $names;
     }
     public function details(Buysell $id)

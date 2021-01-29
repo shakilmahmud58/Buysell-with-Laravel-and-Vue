@@ -1,9 +1,9 @@
 @extends('layouts.new')
 @section('nav')
-<nav class="navbar navbar-expand-sm bg-dark  justify-content-center">
+<nav class="navbar navbar-expand-sm bg-dark  justify-content-center navbar-fixed-top" id="nav">
 	  
       <a class="navbar-brand" href="#">LOGO</a>
-      <ul class="navbar-nav">
+      <ul class="navbar-nav" id="list">
            <span class="navbar-text pl-2 pr-2">
               <h1 style="color:orange; font-weight:bold;">BUYSELL</h1>
               <p class="font-weight-bold text-success pb-1" style="padding-left:100px;">-BUY & SELL EVERYTHING</p>
@@ -12,20 +12,19 @@
                   <input class="form-control mr-sm-2 " size='40' type="text" placeholder="Search...">
                   <button type="submit" placeholder="Search.." class="btn btn-warning">Search</button>
                  </div>
+				 		  
           </form> -->
-		  <div id="app1" style="padding-top:45px;padding-left:10px"><searchbar></searchbar></div>
-          <!-- <li class="nav-item ">
-              <a class="nav-link pt-5 pl-5 pr-3" href="#">SIGN UP<span class="badge">0</span></a>
-          </li> -->
+		  <li style="padding-top:45px;padding-left:10px"><searchbar></searchbar></li>
+
 
 
 		  @guest
-            <li class="nav-item " style="font-size:17px">
-			    <a class="nav-link pt-5 pl-3 pr-3" href="{{ route('login') }}">{{ __('LOGIN') }}</a>
+            <li class="nav-item" style="font-size:17px;" id="login">
+			    <a class="nav-link pt-5 pl-4 pr-3" href="{{ route('login') }}">{{ __('login') }}</a>
             </li>
 			 @else
-			 <li class="nav-item dropdown" style="font-size:17px">
-                                <a id="navbarDropdown" class="nav-link pt-5 pl-3 pr-3 dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+			 <li class="nav-item dropdown" style="font-size:17px;" id="login">
+                                <a id="navbarDropdown" class="nav-link pt-5 pl-4 pr-3 dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
@@ -46,22 +45,23 @@
 
 
           <li class="nav-item" style="font-size:17px">
-		    <a class="nav-link pt-5 pl-3 pr-3" href="/messages"> MESSAGES<unreadmsg :user={{ $user? $user->id: 0}}></unreadmsg></a>		 
+		    <a class="nav-link pt-5 pl-3 pr-3" href="/messages"> Messages<unreadmsg :user={{ $user? $user->id: 0}}></unreadmsg></a>		 
           </li>
           <li class="nav-item" style="font-size:17px">
-              <a class="nav-link pt-5 pl-3 pr-3" href="/notifications">NOTIFICATIONS<unreadnoti :user={{ $user? $user->id: 0}}></unreadnoti></a>
+              <a class="nav-link pt-5 pl-3 pr-3" href="/notifications">Notifications<unreadnoti :user={{ $user? $user->id: 0}}></unreadnoti></a>
           
           </li>
            <li class="nav-item" style="font-size:17px">
-              <a class="nav-link pt-5 pl-3 pr-3" href="controlpanel">CONTROL PANEL</a>
+              <a class="nav-link pt-5 pl-3 pr-3" href="controlpanel">Control Panel</a>
           
           </li>
+
        </ul>
    </nav>
 @endsection
 
 @section('carousel')
-<div  id="demo" class="carousel slide" data-ride="carousel" style="text-align:center;">      
+<div  id="demo" class="carousel slide" data-ride="carousel" style="text-align:center; z-index:-1;">      
 	           <ul class="carousel-indicators">
 		      <li data-target="#demo" data-slide-to="0" class="active"></li>
 	          <li data-target="#demo" data-slide-to="1"></li>
