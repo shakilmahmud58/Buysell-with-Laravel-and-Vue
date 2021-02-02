@@ -20,6 +20,8 @@ Route::post('/getdata','BuysellController@index2');
 Route::get('/recommendation','BuysellController@recommendation');
 Route::post('/home','BuysellController@forpost');
 Route::get('/controlpanel','BuysellController@controlpanel')->middleware('auth');
+Route::post('/productupdate','BuysellController@update');
+Route::post('/deleteitem','BuysellController@delete');
 //Route::get('/','MyController@show')->name('welcome');
 //for check
 Auth::routes();
@@ -45,7 +47,7 @@ Route::get('/example','MessageController@example')->middleware('auth');
 
 Route::post('/productname','MyController@search');
 Route::get('/product{id}','MyController@details');
-
+Route::get('/search/{name}','MyController@searchresults');
 
 //for foodies
 // Route::get('/foodies','MyController@showfoodies')->name('foodies');
@@ -77,7 +79,8 @@ Route::get('/product{id}','MyController@details');
 // Route::post('/selectbutic','ButicsController@updateit');
  Route::post('/storereviews','ReviewController@store');
  Route::get('/getreviews/{id}','ReviewController@getreviews');
-
+ Route::post('/reviewupdate','ReviewController@update');
+ Route::post('/deletereview','ReviewController@delete');
 
 
 

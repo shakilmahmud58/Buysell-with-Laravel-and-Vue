@@ -11,9 +11,9 @@ class BuysellController extends Controller
 {
     public function index(Request $request)
     {
-        $data = Buysell :: all();
+
         $user = auth()->user();
-        return view('new',['data' => $data,'user'=>$user]);
+        return view('new',['user'=>$user]);
     }
     public function index3(Request $request)
     {
@@ -42,7 +42,7 @@ class BuysellController extends Controller
         $rating = request('rating');
         $currentuser= auth()->user()->id;
         $user = auth()->user();
-        //dd($path);
+        //dd(request('image'));
         Buysell :: create([
             'name' => $name,
             'color' => $color,
@@ -54,6 +54,37 @@ class BuysellController extends Controller
             ]);
         $data = Buysell :: all();
         return view('new',['data' => $data,'user'=>$user]);
+    }
+    public function update(Request $request)
+    {
+        $name = $request->name;
+        $color = $request->color;
+        $des = $request->des;
+        $price = $request->price;
+        $id = $request->pid;
+     if($request->image!='null'){
+        $path = 'storage/'.$request->image->store('buysells','public');
+        $data = Buysell::where('id',$id)->update([
+            'name' => $name,
+            'color' => $color,
+            'description' => $des,
+            'price' =>$price,
+            'image' => $path
+        ]);
+     }
+     else{
+        $data = Buysell::where('id',$id)->update([
+            'name' => $name,
+            'color' => $color,
+            'description' => $des,
+            'price' =>$price,
+        ]);       
+     }
+    }
+    public function delete(Request $request)
+    {
+       $id = $request->id;
+       Buysell::find($id)->delete();
     }
     public function recommendation()
     {

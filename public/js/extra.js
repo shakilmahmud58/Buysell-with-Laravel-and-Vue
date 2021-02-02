@@ -1,8 +1,10 @@
+if(document.getElementById('login')){
 setInterval(function(){
-    if(window.innerWidth<580){
+    if(window.innerWidth<768){
         document.getElementById('login').className='login';
     }
     else{
         document.getElementById('login').className='navitem';
     }
 },1);
+};

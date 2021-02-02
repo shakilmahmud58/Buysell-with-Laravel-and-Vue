@@ -48,5 +48,16 @@ class ReviewController extends Controller
       $noti = auth()->user()->id;
       return view('shownoti',['user'=>$noti ]);
    }
+   public function update(Request $request)
+   {
+     $id=$request->id;
+     $rewiew = $request->text;
+     Reviews::find($id)->update(['reviews'=>$rewiew]);
+   }
+   public function delete(Request $request)
+   {
+     $id=$request->id;
+     Reviews::find($id)->delete();
+   }
    
 }

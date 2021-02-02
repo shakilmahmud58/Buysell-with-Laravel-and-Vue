@@ -1,10 +1,12 @@
 <template>
-           <div id="demo">
+           <div id="searchbar" >
                  <form class="form-inline">
-                  <input class="form-control" size='40' type="text" placeholder="Search..." v-model="itemname" v-on:blur="blurit">
+                  <input id="form" class="form-control" size='40' type="text" placeholder="Search..." v-on:keyup="changeit"  v-on:blur="blurit">
                  </form>
-                  <div id="results" v-if="shown" v-for="name in names">
-                     <a :href='`/product${name.id}`'><div>{{name.name}}</div></a>
+                 <div  v-if="shown">
+                  <div id="results" v-for="(name , index) in names" v-on:mouseleave="leaveit" v-on:click="clickit(name.name)" v-on:mouseover="overit(name.name)" :key="index">
+                     <a :href='`/search/${name.name}`'><div>{{name.name}}</div></a>
+                  </div>
                   </div>
             </div>
 </template>
@@ -18,34 +20,50 @@
             return{
                 itemname:'',
                 names:[],
-                shown:false
+                shown:false,
+                x:''
             }
 
         },
         watch:{
-           itemname(x,y){
-               if(x!=''){
-                axios.post('/productname',{name:x})
-               .then((res)=>{
-                   this.shown=true;
-                   this.names=res.data;
-                   console.log(res.data);
-                 })
-               }
-               else
-               this.shown=false;
-
-           }
+               
         },
         methods:{
-          blurit(){
+            clickit(x){
+              document.getElementById('form').value=x;
               this.shown=false;
-          }
+            },
+            changeit(e){
+              var x = e.target.value;
+              this.itemname=x;
+              if(x!=''){
+                axios.post('/productname',{name:x})
+                 .then((res)=>{
+                    this.shown=true;
+                    this.names=res.data;
+    
+                 })
+              }
+              else{
+                  this.shown=false;
+              }
+              
+            },
+            leaveit(x){
+              document.getElementById('form').value=this.itemname;
+            },
+          overit(x){
+              document.getElementById('form').value=x;
+          },
+
+          blurit(){
+            setTimeout(()=>{this.shown=false;},500)
+          },
        }
     }
 </script>
 <style scoped>
-#demo{
+#searchbar{
     position:absolute;
     border-radius:8px;
     background-color:white;

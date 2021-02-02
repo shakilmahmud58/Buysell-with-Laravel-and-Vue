@@ -16,7 +16,9 @@
               <p><span style="font-weight:bold">Product Type : </span></p>
               <p><span style="font-weight:bold">Price : </span>{{ $data->price }}</p>
 			        <p><span style="font-weight:bold">Rating : </span>{{ $data->rating }}</p>
+              <!-- @if(auth()->user()->id!==$data->user->id) -->
                Uploaded By : <example-component :message={{ $data->user }}></example-component>
+               <!-- @endif -->
              </div>
              </div>
              <!-- <broad :id={{ $data->id }}></broad> -->

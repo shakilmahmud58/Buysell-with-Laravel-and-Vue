@@ -22,8 +22,14 @@ class MyController extends Controller
     public function search(Request $request)
     {
        $data= $request->name;
-       $names= Buysell::where('name','LIKE',"%{$data}%")->take(5)->get();
+       $names= Buysell::select('name')->where('name','LIKE',"{$data}%")->orWhere('name','LIKE',"%{$data}%")->groupBy('name')->orderBy('name','asc')->get();
        return $names;
+    }
+    public function searchresults(Request $request)
+    {
+       $data= $request->name;
+       $names= Buysell::where('name','LIKE',"%{$data}%")->get();
+       return view('searchresults',['data'=>$names]);
     }
     public function details(Buysell $id)
     {

@@ -7,19 +7,36 @@
             <div v-else>
                You must have to <a href="/login">login</a> for share a review for this product
             </div>
-               <div>{{ this.msg}}</div>
+               <div v-show="msg">No reviews available </div>
                <div id="review" v-for="review in reviews">
                 <p>{{review.reviews}}</p>
-                <h6>...by {{review.useremail}}</h6>
+                <span v-if="userid==review.user_id">
+                <button class="btn btn-sm btn-primary" @click="editit(review.id)">Edit</button>
+                <button class="btn btn-sm btn-danger" @click="deleteitem(review.id)">Delete</button>
+                </span>
+                <h6 v-else>...by {{review.useremail}}</h6>
+                </br>
+                <reviewedit v-if="editform" :data="review"></reviewedit>
                </div>
-              
             </div>
 </template>
 
 <script>
-
+import {bus} from '../app';
+import reviewedit from './reviewpanel.vue';
     export default {
+        components:{
+            reviewedit,
+        },
         props:['productid','userid'],
+        created(){
+           bus.$on('cancelit',()=>{
+               this.editform=false;
+           });
+           bus.$on('updateit',()=>{
+               this.editform=false;
+           });
+        },
         mounted() { 
            this.getreviews();
            this.listen();
@@ -33,9 +50,9 @@
         data(){
             return{
                text:'',
-               msg :'',
+               msg :false,
                reviews:[],
-        
+               editform:false
             }
         },
         methods:{
@@ -63,19 +80,22 @@
             getreviews(){
 
                 axios.get('/getreviews/'+this.productid).then(res=>{  
-                   
-                    if(res.data.length==0)
-                    {
-                         this.msg='No reviews available';
-                         console.log('updated');
-                    }
-                    else{
-
-                        this.msg='';
-                        this.reviews = res.data;
-                    }  
+                   if(res.data.length==0){
+                       this.msg=true;
+                   }
+                        this.reviews = res.data;  
                    
                 })
+            },
+            editit(x){
+              alert(x);
+              this.editform=true;
+            },
+            deleteitem(x){
+              axios.post('/deletereview',{id:x})
+              .then(res=>{
+    
+              })
             },
             
        }

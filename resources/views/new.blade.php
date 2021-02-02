@@ -130,44 +130,14 @@
 		         <p style="padding-top:10px">FOR ADDS,THIS PLACE IS FOR ADDS</p> 
 	         </div>
 	         <div class="col-sm-8 border border-top-0">
-			 <orderby></orderby>
-             <notification :user={{ $user? $user->id: 0 }}></notification>
-
-			    <!-- @foreach ($data as $data)
-                    <div class="card bg-light">
-			             <div class="card-body" style="height:250px;background-color:">
-			                 <p style="float:left;clear:both;"> <a href="/product {{$data->id}}"><img src="{{ $data->image }}" width="150px" height="210px"></a></p>
-				             <div style="text-align:left;margin-left:300px;border-left:solid black 1px;padding-left:15px;">
-							    <p><span style="font-weight:bold">Product Name : </span>{{ $data->name }}</p>
-								<p><span style="font-weight:bold">Available Color : </span>{{ $data->color }}</p>
-					
-								<p><span style="font-weight:bold">Price : </span>{{ $data->price }}</p>
-								<p><span style="font-weight:bold">Rating : </span>{{ $data->rating }}</p>
-								Uploaded By : <example-component :message={{ $data->user }}></example-component>
-							  </div>
-						 </div>
-                     </div> <br>
-		        @endforeach -->
-                    
-	          </div>
+			 <orderby :user={{ $user? $user->id: 0 }}></orderby>
+             <notification :user={{ $user? $user->id: 0 }}></notification>     
+	        </div>
 	          <div class="col-sm-2" style="height:500px;background-color:blue;">
 		         <h5 style="padding-top:15px">RECOMENDATIONS</h5>
 				 <br> 
 				 <rec></rec>
-				 <!-- <div class="card bg-light">
-				     
-				     <p style="padding:5px;"> Here will be the recomendation for visitor</p>
-				 </div><br>
-				 <div class="card bg-light">
-				     <p style="padding:5px;"> Here will be the recomendation for visitor</p>
-				 </div><br>
-				 <div class="card bg-light">
-				     <p style="padding:5px;"> Here will be the recomendation for visitor</p>
-				 </div><br>
-				 <div class="card bg-light">
-				     <p style="padding:5px;"> Here will be the recomendation for visitor</p>
-				 </div>-->
-	          </div> 
+			  </div> 
            </div>   
 
       </div>
